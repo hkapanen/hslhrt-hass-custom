@@ -96,7 +96,7 @@ async def async_unload_entry(hass, config_entry):
 
 
 async def update_listener(hass, config_entry):
-    """Update FMI listener."""
+    """Update listener."""
     await hass.config_entries.async_reload(config_entry.entry_id)
 
 

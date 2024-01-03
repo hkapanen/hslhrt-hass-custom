@@ -1,4 +1,4 @@
-"""Config flow for FMI (Finnish Meteorological Institute) integration."""
+"""Config flow for HSL-HRT (Helsinki Regional Transport) integration."""
 
 import voluptuous as vol
 
@@ -28,7 +28,7 @@ api_key = None
 
 
 async def validate_user_config(hass: core.HomeAssistant, data):
-    """Validate input configuration for HSL HRT.
+    """Validate input configuration for HSL-HRT.
 
     Data contains Stop Name/Code provided by user.
     """
@@ -178,7 +178,7 @@ async def validate_user_config(hass: core.HomeAssistant, data):
 
 
 class HSLHRTConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    """Config flow handler for FMI."""
+    """Config flow handler for HSL-HRT."""
 
     VERSION = 1
     CONNECTION_CLASS = config_entries.CONN_CLASS_CLOUD_POLL

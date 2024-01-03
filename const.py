@@ -1,4 +1,4 @@
-"""Constants for the FMI Weather and Sensor integrations."""
+"""Constants for the HSL-HRT (Helsinki Regional Transport) integration."""
 import logging
 from datetime import timedelta
 
