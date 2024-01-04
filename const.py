@@ -24,6 +24,7 @@ DESTINATION = "destination"
 ALL = "all"
 ERROR = "err"
 APIKEY = "apikey"
+LIMIT = "limit"
 
 # Graphql variables
 VAR_NAME_CODE = "name_code"
@@ -47,7 +48,6 @@ ATTR_STOP_GTFS = "GTFS ID"
 
 ATTRIBUTION = "Data provided by Helsinki Regional Transport(HSL HRT)"
 
-LIMIT = 1500
 SECS_IN_DAY = 24 * 60 * 60
 
 STOP_ID_QUERY = """

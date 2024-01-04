@@ -19,7 +19,7 @@
 
 ## Sensor
 
-Sensor provides real time arrival information of a `route` (bus/tram) if available. If real time info is unavailable, it provides the scheduled arrival time of the `route`. If integration is configured with a `route`, sensor provides arrival times filtered for that `route` only. If the integration is configured without a `route`, it provides arrival times for all `routes` arriving at the given stop, in order of their arrival time. Sensor attributes provide the `Stop Name`, `Stop Code`, `Stop GTFS ID` and a list of upcoming `routes` with their arrival times for the day.
+Sensor provides real time arrival information of a `route` (bus/tram) if available. If real time info is unavailable, it provides the scheduled arrival time of the `route`. If integration is configured with a `route`, sensor provides arrival times filtered for that `route` only. If the integration is configured without a `route`, it provides arrival times for all `routes` arriving at the given stop, in order of their arrival time. Sensor attributes provide the `Stop Name`, `Stop Code`, `Stop GTFS ID` and a list of upcoming `routes` with their arrival times for a `limit` number of entries.
 
 <br/>
 
@@ -445,3 +445,6 @@ Anand Radhakrishnan [@anand-p-r](https://github.com/anand-p-r)
 
 ## Added API key support
 Mathias Backman [@fimathias](https://github.com/fimathias)
+
+## Added configurable query limit
+Harri Kapanen [@hkapanen](https://github.com/hkapanen)

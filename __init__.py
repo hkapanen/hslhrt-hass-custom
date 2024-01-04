@@ -117,9 +117,15 @@ class HSLHRTDataUpdateCoordinator(DataUpdateCoordinator):
             "Using Destination: %s", config_entry.data.get(DESTINATION, "None")
         )
 
+        ##if config_entry.data.get(LIMIT, "None") is not None:
+        _LOGGER.debug(
+            "Using Limit: %s", config_entry.data.get(LIMIT, "None")
+        )
+
         self.gtfs_id = config_entry.data.get(STOP_GTFS, "")
         self.route = config_entry.data.get(ROUTE, "")
         self.dest = config_entry.data.get(DESTINATION, "")
+        self.limit = config_entry.data.get(LIMIT, "")
         self.apikey = config_entry.data.get(APIKEY, "")
 
         self.route_data = None
@@ -244,12 +250,12 @@ class HSLHRTDataUpdateCoordinator(DataUpdateCoordinator):
 
         try:
             async with timeout(10):
-                # Find all the trips for the day
+                # Find LIMIT number of trips
                 current_epoch = int(time.time())
                 variables = {
                     VAR_ID: self.gtfs_id.upper(),
                     VAR_CURR_EPOCH: current_epoch,
-                    VAR_LIMIT: LIMIT,
+                    VAR_LIMIT: self.limit,
                 }
 
                 graph_client.headers["digitransit-subscription-key"] = self.apikey

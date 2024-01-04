@@ -22,6 +22,7 @@ from .const import (
     ROUTE,
     DESTINATION,
     APIKEY,
+    LIMIT,
 )
 
 api_key = None
@@ -35,6 +36,7 @@ async def validate_user_config(hass: core.HomeAssistant, data):
     name_code = data[NAME_CODE]
     route = data[ROUTE]
     dest = data[DESTINATION]
+    limit = data[LIMIT]
     apikey = data[APIKEY]
 
     errors = ""
@@ -96,6 +98,7 @@ async def validate_user_config(hass: core.HomeAssistant, data):
                     STOP_GTFS: stop_gtfs,
                     ROUTE: ret_route,
                     DESTINATION: ret_dest,
+                    LIMIT: limit,
                     ERROR: errors,
                     APIKEY: apikey,
                 }
@@ -119,6 +122,7 @@ async def validate_user_config(hass: core.HomeAssistant, data):
             STOP_GTFS: None,
             ROUTE: None,
             DESTINATION: None,
+            LIMIT: None,
             ERROR: errors,
             APIKEY: apikey,
         }
@@ -172,6 +176,7 @@ async def validate_user_config(hass: core.HomeAssistant, data):
         STOP_GTFS: stop_gtfs,
         ROUTE: ret_route,
         DESTINATION: ret_dest,
+        LIMIT: limit,
         ERROR: errors,
         APIKEY: apikey,
     }
@@ -216,6 +221,7 @@ class HSLHRTConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(NAME_CODE, default=""): str,
                 vol.Required(ROUTE, default="ALL"): str,
                 vol.Required(DESTINATION, default="ALL"): str,
+                vol.Required(LIMIT, default=10): int,
                 vol.Required(APIKEY, default=""): str,
             }
         )

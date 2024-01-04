@@ -13,10 +13,11 @@
         "step": {
             "user": {
                 "data": {
-                    "apikey": "API key",
-                    "destination": "Destination",
+                    "user_name_code": "STOP Name / Code",
                     "route": "Route",
-                    "user_name_code": "STOP Name / Code"
+                    "destination": "Destination",
+                    "limit": "Query limit",
+                    "apikey": "API key"
                 },
                 "description": "HSL-HRT Configuration Parameters",
                 "title": "Helsinki Regional Transport"
