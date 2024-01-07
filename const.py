@@ -48,8 +48,6 @@ ATTR_STOP_GTFS = "GTFS ID"
 
 ATTRIBUTION = "Data provided by Helsinki Regional Transport(HSL HRT)"
 
-SECS_IN_DAY = 24 * 60 * 60
-
 STOP_ID_QUERY = """
     query ($name_code: String!) {
         stops (name: $name_code) {

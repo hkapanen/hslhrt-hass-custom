@@ -4,7 +4,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from async_timeout import timeout
-import datetime
+from datetime import datetime, timedelta
 import time
 
 from python_graphql_client import GraphqlClient
@@ -31,7 +31,6 @@ from .const import (
     VAR_CURR_EPOCH,
     VAR_LIMIT,
     LIMIT,
-    SECS_IN_DAY,
     _LOGGER,
     APIKEY,
 )
@@ -40,7 +39,6 @@ from .const import (
 PLATFORMS = ["sensor"]
 
 graph_client = GraphqlClient(endpoint=BASE_URL)
-
 
 def base_unique_id(gtfs_id, route=None, dest=None):
     """Return unique id for entries in configuration."""
@@ -162,20 +160,9 @@ class HSLHRTDataUpdateCoordinator(DataUpdateCoordinator):
                         for route in route_data:
                             route_dict = {}
                             arrival = route.get("realtimeArrival", None)
+                            service_day = route.get("serviceDay", None)
 
-                            if arrival is None:
-                                arrival = route.get("scheduledArrival", 0)
-
-                            ## Arrival time is num of secs from midnight when the trip started.
-                            ## If the trip starts on this day and arrival time is next day (e.g late night trips)
-                            ## the arrival time shows the number of secs more than 24hrs ending up with a
-                            ## 1 day, hh:mm:ss on the displays. This corrects it.
-                            if arrival >= SECS_IN_DAY:
-                                arrival = arrival - SECS_IN_DAY
-
-                            route_dict[DICT_KEY_ARRIVAL] = str(
-                                datetime.timedelta(seconds=arrival)
-                            )
+                            route_dict[DICT_KEY_ARRIVAL] = datetime.fromtimestamp(service_day) + timedelta(seconds=arrival)
                             route_dict[DICT_KEY_DEST] = route.get("headsign", "")
 
                             route_dict[DICT_KEY_ROUTE] = ""
