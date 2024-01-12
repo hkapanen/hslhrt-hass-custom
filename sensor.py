@@ -107,7 +107,7 @@ class HSLHRTRouteSensor(CoordinatorEntity):
             and len(self.coordinator.route_data[DICT_KEY_ROUTES]) > 0
         ):
             routes = []
-            for rt in self.coordinator.route_data[DICT_KEY_ROUTES][1:]:
+            for rt in self.coordinator.route_data[DICT_KEY_ROUTES]:
                 dest_str = "Unavailable"
 
                 if rt[DICT_KEY_DEST] is not None:
@@ -131,13 +131,6 @@ class HSLHRTRouteSensor(CoordinatorEntity):
                 ]
 
             return {
-                ATTR_ROUTE: self.coordinator.route_data[DICT_KEY_ROUTES][0][
-                    DICT_KEY_ROUTE
-                ],
-                ATTR_DEST: dest_str,
-                ATTR_ARR_TIME: self.coordinator.route_data[DICT_KEY_ROUTES][0][
-                    DICT_KEY_ARRIVAL
-                ],
                 "ROUTES": routes,
                 ATTR_STOP_NAME: self.coordinator.route_data[STOP_NAME],
                 ATTR_STOP_CODE: self.coordinator.route_data[STOP_CODE],
@@ -161,7 +154,7 @@ class HSLHRTRouteSensor(CoordinatorEntity):
         if len(self.coordinator.route_data[DICT_KEY_ROUTES]) > 0:
             for rt in self.coordinator.route_data[DICT_KEY_ROUTES]:
                 if rt[DICT_KEY_ROUTE] != "":
-                    self._state = rt[DICT_KEY_ROUTE]
+                    self._state = rt[DICT_KEY_ARRIVAL]
                     self._icon = "mdi:bus"
                     return
                 else:
